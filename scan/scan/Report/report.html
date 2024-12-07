@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microscan - Report</title>
+
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .navigation {
+            width: 250px;
+            background: #2c3e50;
+            height: 100vh;
+            color: white;
+        }
+
+        .navigation ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navigation ul li {
+            padding: 20px 15px;
+        }
+
+        .navigation ul li a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .navigation ul li a .icon {
+            margin-right: 10px;
+        }
+
+        .main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .topbar {
+            background: #ffffff;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Data Section Styling */
+        .data-section {
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .data-section h2 {
+            margin-bottom: 15px;
+        }
+
+        .data-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .data-list li {
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .data-green {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .data-yellow {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .data-red {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="leaf-outline"></ion-icon>
+                        </span>
+                        <span class="title">Microscan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="report.html">
+                        <span class="icon">
+                            <ion-icon name="people-outline"></ion-icon>
+                        </span>
+                        <span class="title">Report</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="help-outline"></ion-icon>
+                        </span>
+                        <span class="title">Help</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="chatbubble-outline"></ion-icon>
+                        </span>
+                        <span class="title">Messages</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                        </span>
+                        <span class="title">Alert</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+            </div>
+
+            <!-- Data Display Section -->
+            <div class="data-section">
+                <h2>Milk Adulteration Data</h2>
+                <ul class="data-list" id="data-list">
+                    <!-- Dynamic Data Points Will Be Injected Here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========== Scripts ========= -->
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        // Data array
+        const data = [
+            { date: "5-12-2024", time: "12:07", pH: 6.7, tds: "3200ppm", color: "green" },
+            { date: "5-12-2024", time: "12:23", pH: 7.1, tds: "3600ppm", color: "yellow" },
+            { date: "6-12-2024", time: "07:40", pH: 6.5, tds: "3300ppm", color: "green" },
+            { date: "6-12-2024", time: "08:06", pH: 7.4, tds: "3650ppm", color: "red" },
+            { date: "7-12-2024", time: "09:42", pH: 4.6, tds: "3450ppm", color: "red" },
+            { date: "7-12-2024", time: "09:50", pH: 6.8, tds: "3500ppm", color: "green" },
+            { date: "7-12-2024", time: "10:11", pH: 7.2, tds: "3469ppm", color: "yellow" }
+        ];
+
+           
+
+
+        // Reference to the data list element
+        const dataList = document.getElementById("data-list");
+
+        // Populate the list dynamically
+        data.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = `Date: ${item.date}, Time: ${item.time}, pH: ${item.pH}, TDS: ${item.tds}`;
+            li.classList.add(`data-${item.color}`);
+            dataList.appendChild(li);
+        });
+    </script>
+</body>
+
+</html>
